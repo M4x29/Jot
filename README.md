@@ -1,2 +1,2 @@
 # React-notes
-React notes app for å lære React. Første React prosjekt jeg gjør alene :) Målet er å lære nok til å starte på ett javaskript kurs/prosjekt:  https://webtips.dev/100-javascript-project-ideas
+small react project just to learn. want to learn enough to move on to a different project, not necessarily finish this
