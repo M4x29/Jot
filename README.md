@@ -1,2 +1,2 @@
 # React-notes
-liten react notes app for å lære React.  Målet er å lære nok til å starte på ett annet prosjekt, ikke å bli ferdig. 
+small react project just to learn. want to learn enough to move on to a different project, not necessarily finish this
