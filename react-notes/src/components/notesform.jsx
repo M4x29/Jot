@@ -34,55 +34,57 @@ function NotesForm() {
 
   return (
     <>
-      <div className="w-1/4 h-fit  m-0 flex flex-col">
-        <div className="h-3"></div>
+      <main className="w-screen h-full flex justify-center ">
+        <div className="w-1/4 h-fit  m-0 flex flex-col">
+          <div className="h-3"></div>
 
-        <motion.div
-          whileHover={{
-            scale: 1.1,
-            transition: { duration: 0.2 },
-          }}
-          className="border rounded-md p-3 border-slate-100"
-        >
-          <h1
-            className={
-              "text-4xl text-slate-50 w-full flex justify-center items-center mb-3 border-black"
-            }
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.2 },
+            }}
+            className="border rounded-md p-3 border-slate-100"
           >
-            New note
-          </h1>
-          <form className="flex flex-col" onSubmit={handleSubmit}>
-            {" "}
-            <input
-              className="w-full h-16 text-text text-2xl placeholder:text-text  placeholder:text-xl rounded-sm flex justify-center items-center"
-              type="text"
-              placeholder=" Write title here ..."
-              name="title"
-              onChange={handleChange}
-              value={state.title}
-              required
-            />
-            <div className="h-3"></div>
-            <textarea
-              className="text-black placeholder:text-text rounded-sm"
-              name="note"
-              id=""
-              cols="30"
-              rows="8"
-              placeholder="Start writing .."
-              onChange={handleChange}
-              value={state.note}
-            ></textarea>
-            <div className="h-3"></div>
-            <button
-              className="bg-secondary h-16 rounded-sm text-text"
-              type="submit"
+            <h1
+              className={
+                "text-4xl text-slate-50 w-full flex justify-center items-center mb-3 border-black"
+              }
             >
-              Save note
-            </button>
-          </form>
-        </motion.div>
-      </div>
+              New note
+            </h1>
+            <form className="flex flex-col" onSubmit={handleSubmit}>
+              {" "}
+              <input
+                className="w-full h-16 text-text text-2xl placeholder:text-text  placeholder:text-xl rounded-sm flex justify-center items-center"
+                type="text"
+                placeholder=" Write title here ..."
+                name="title"
+                onChange={handleChange}
+                value={state.title}
+                required
+              />
+              <div className="h-3"></div>
+              <textarea
+                className="text-black placeholder:text-text rounded-sm"
+                name="note"
+                id=""
+                cols="30"
+                rows="8"
+                placeholder="Start writing .."
+                onChange={handleChange}
+                value={state.note}
+              ></textarea>
+              <div className="h-3"></div>
+              <button
+                className="bg-secondary h-16 rounded-sm text-text"
+                type="submit"
+              >
+                Save note
+              </button>
+            </form>
+          </motion.div>
+        </div>
+      </main>
       <div className=" w-11/12  border-t-2 border-blue-600  mt-5 mb-5 flex ">
         <div className="text-white  w-full h-full flex flex-row flex-wrap gap-5 p-6 ">
           {notes.length > 0 ? (
@@ -99,7 +101,7 @@ function NotesForm() {
                     }}
                   >
                     <div
-                      className="bg-notes text-xl text-black w-96 h-[300px] overflow-y-auto flex flex-col p-4  "
+                      className="bg-notes text-xl text-black w-96 h-[400px] overflow-y-auto flex flex-col p-4  "
                       key={i}
                     >
                       <div className="w-full flex justify-end">
