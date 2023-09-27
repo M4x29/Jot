@@ -9,7 +9,6 @@ body {
 }
 
 ::-webkit-scrollbar {
-  @apply bg-notes;
   @apply w-2;
 }
 /* Track */
