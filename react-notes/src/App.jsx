@@ -9,7 +9,7 @@ function App() {
         }
       >
         <h1 className="text-slate-50 text-7xl flex items-center h-36">
-          Small React notes app!
+          Small React notes app
         </h1>
         <NotesForm />
       </div>

@@ -54,7 +54,7 @@ function NotesForm() {
               scale: 1.1,
               transition: { duration: 0.2 },
             }}
-            className="border rounded-md p-3 border-slate-100"
+            className="bg-[#262230] rounded-md p-4 border-slate-100"
           >
             <h1
               className={
@@ -66,7 +66,7 @@ function NotesForm() {
             <form className="flex flex-col" onSubmit={handleSubmit}>
               {" "}
               <input
-                className="w-full h-16 text-text text-2xl placeholder:text-text  placeholder:text-xl rounded-sm flex justify-center items-center"
+                className="w-full h-16 text-text text-2xl placeholder:text-text p-1  placeholder:text-xl rounded-sm flex justify-center items-center"
                 type="text"
                 placeholder=" Write title here ..."
                 name="title"
@@ -76,7 +76,7 @@ function NotesForm() {
               />
               <div className="h-3"></div>
               <textarea
-                className="text-black placeholder:text-text rounded-sm"
+                className="text-black placeholder:text-text rounded-sm p-3"
                 name="note"
                 id=""
                 cols="30"
@@ -97,7 +97,7 @@ function NotesForm() {
           </motion.div>
         </div>
       </main>
-      <div className=" w-11/12  border-t-2 border-blue-600  mt-5 mb-5 flex ">
+      <div className=" w-11/12  border-t-2 border-blue-600  mt-8 mb-5 flex ">
         <div className="text-white  w-full h-full flex flex-row flex-wrap gap-5 p-6 ">
           {notes.length > 0 ? (
             notes.map((note, i) => {
