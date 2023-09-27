@@ -1,5 +1,4 @@
-import React from "react"; // importerer React modul som man bør gjøre i alle komponenter fordi det er visse funksjonaliteter som er avhengig av denne modulen
-import { useState } from "react"; // importerer useState hook som lar oss bruke state i funksjonelle komponenter
+import React, { useState, useEffect } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
@@ -13,27 +12,39 @@ function NotesForm() {
   });
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.value }); //... er en spread operator btw. Denne handleChange funksjonen henter inn en event som skjedde i DOM med event.target. .target henter inn det som skjedde på nettsiden basically. Og .name henter inn hvor det skjedde. Så vi har en attribute i html-en som er name="title" så den henter inn at noe skjedde i input taggen som hører til name="title".
+    setState({ ...state, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newNote = { ...state, id: uuidv4() }; // Generate a unique ID for the new note med uiidv4 library som jeg lastet ned.
-    setNotes([...notes, newNote]);
+    const newNote = { ...state, id: uuidv4() };
+    const updatedNotes = [...notes, newNote];
+    setNotes(updatedNotes);
+
+    // Store updated notes in localStorage
+    window.localStorage.setItem("notes", JSON.stringify(updatedNotes));
+
     setState({
       title: "",
       note: "",
     });
   };
+  useEffect(() => {
+    // Retrieve notes from localStorage when the component mounts
+    const storedNotes = JSON.parse(window.localStorage.getItem("notes"));
+    if (storedNotes) {
+      setNotes(storedNotes);
+    }
+  }, []);
 
   const handleDelete = (id) => {
-    const deletedNote = notes.filter((note) => note.id !== id); //tar inn note id og fjerner id-en som er lik den som er valgt. Så blir setNotes oppdatert med den nye arrayen uten den slettede noten.
+    const deletedNote = notes.filter((note) => note.id !== id);
     setNotes(deletedNote);
-    console.log(id);
   };
 
   return (
     <>
+      {" "}
       <main className="w-screen h-full flex justify-center ">
         <div className="w-1/4 h-fit  m-0 flex flex-col">
           <div className="h-3"></div>
@@ -72,6 +83,7 @@ function NotesForm() {
                 rows="8"
                 placeholder="Start writing .."
                 onChange={handleChange}
+                onSubmit={handleSubmit}
                 value={state.note}
               ></textarea>
               <div className="h-3"></div>
