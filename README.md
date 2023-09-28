@@ -1,2 +1,2 @@
 # React-notes
-small react project just to learn. want to learn enough to move on to a different project, not necessarily finish this
+a small react project to learn react and because i needed a place to store temporary code, etc without flooding my notes app. 
