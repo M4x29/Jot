@@ -1,4 +1,4 @@
-import NotesForm from "./components/notesform";
+import NotesForm from "../components/NotesForm";
 
 function App() {
   return (

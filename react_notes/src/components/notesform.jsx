@@ -20,8 +20,6 @@ function NotesForm() {
     const newNote = { ...state, id: uuidv4() };
     const updatedNotes = [...notes, newNote];
     setNotes(updatedNotes);
-
-    // Store updated notes in localStorage
     window.localStorage.setItem("notes", JSON.stringify(updatedNotes));
 
     setState({
@@ -30,7 +28,6 @@ function NotesForm() {
     });
   };
   useEffect(() => {
-    // Retrieve notes from localStorage when the component mounts
     const storedNotes = JSON.parse(window.localStorage.getItem("notes"));
     if (storedNotes) {
       setNotes(storedNotes);
@@ -38,8 +35,9 @@ function NotesForm() {
   }, []);
 
   const handleDelete = (id) => {
-    const deletedNote = notes.filter((note) => note.id !== id);
-    setNotes(deletedNote);
+    const updatedNotes = notes.filter((note) => note.id !== id);
+    setNotes(updatedNotes);
+    window.localStorage.setItem("notes", JSON.stringify(updatedNotes));
   };
 
   return (
