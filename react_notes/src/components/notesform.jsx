@@ -43,7 +43,7 @@ function NotesForm() {
   return (
     <>
       {" "}
-      <main className="w-screen h-full flex justify-center ">
+      <main className="w-screen h-full flex justify-center b">
         <div className="w-1/4 h-fit  m-0 flex flex-col">
           <div className="h-3"></div>
 
@@ -100,7 +100,7 @@ function NotesForm() {
           {notes.length > 0 ? (
             notes.map((note, i) => {
               return (
-                <>
+                <div key={i}>
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ rotate: 360, scale: 1 }}
@@ -131,7 +131,7 @@ function NotesForm() {
                       <p className="ml-3">{note.note}</p>
                     </div>
                   </motion.div>
-                </>
+                </div>
               );
             })
           ) : (
