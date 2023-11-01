@@ -10,12 +10,14 @@ export default function Login({ setloginButtonClicked }) {
     setclicked(true);
     console.log("the function ran");
   }
+
+  const inputStyles ="outline-none text-black rounded-lg bg-transparent border border-black h-8 w-56 pl-3"
   return (
     <div className="absolute w-1/2 h-full flex flex-col  justify-center ">
       <div className="flex flex-col h-2/3 bg-slate-800 rounded-md ">
         <button
           onClick={() => setloginButtonClicked(false)}
-          className="hover:text-green-300 w-fit h-fit flex justify-start text-sm p-5 items-center hover:border-s-2"
+          className="hover:text-green-300 w-fit h-fit flex justify-start text-sm p-5 items-center hover:border-s-2 border-green-400"
         >
           be anonymous
           <GiHood className="hover:text-green w-8 h-8" />
@@ -26,17 +28,17 @@ export default function Login({ setloginButtonClicked }) {
           className="flex flex-col w-full h-full justify-start gap-3 items-center border border-dotted border-black"
         >
           <div className="h-12"></div>
-          <section className="flex flex-col justify-start  w-fit gap-5">
+          <section className="flex flex-col justify-start  w-fit gap-5"> {/* tror egt ikke section taggen er nødvendig, men nå er den her */}
             <h1 className="justify-center text-6xl bold ">Login</h1>
             <div className="h-2"></div>
             <input
               type="text"
-              className="outline-none text-black rounded-lg bg-transparent border border-black h-8 w-56"
+              className={inputStyles}
               placeholder="Username"
             />
             <input
               type="text"
-              className="outline-none text-black rounded-lg bg-transparent border border-black h-8 w-56"
+              className={inputStyles} /* backtick og dollar tegn er ikke nødvendig ha! */
               placeholder="password"
             />
           </section>
