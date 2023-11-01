@@ -46,7 +46,6 @@ function NotesForm() {
       <main className="w-screen h-full flex justify-center b">
         <div className="w-1/4 h-fit  m-0 flex flex-col">
           <div className="h-3"></div>
-
           <motion.div
             whileHover={{
               scale: 1.1,
@@ -92,7 +91,8 @@ function NotesForm() {
                 Save note
               </button>
             </form>
-          </motion.div>
+          </motion.div>{" "}
+          .
         </div>
       </main>
       <div className=" w-11/12  border-t-2 border-blue-600  mt-8 mb-5 flex ">
