@@ -11,7 +11,7 @@ export function About({ clicked, setaboutClicked }) {
           onClick={() => setaboutClicked(false)}
           className="hover:text-green-300 w-fit h-fit flex justify-start text-xl p-5 items-center hover:border-s-2 border-green-400 "
         >
-          <AiOutlineClose className="" />
+          <AiOutlineClose />
         </button>
 
         <section className="flex flex-col justify-center text-md md:text-xl lg:text-xl  w-fit gap-5 p-8">
