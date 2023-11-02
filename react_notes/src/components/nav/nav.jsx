@@ -7,12 +7,7 @@ import NotesForm from "@/components/notesform"
 
 export default function Nav({setloginButtonClicked}){
 
-const [aboutClicked, setaboutClicked] = useState(false)
 
-function checkIfAboutClicked(){
-    setaboutClicked(true)
-    console.log("func ran")
-}
   
     return(
 <nav className="flex flex-row  w-full h-16 justify-center items-center bg-transparent/90">
