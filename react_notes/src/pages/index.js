@@ -16,12 +16,13 @@ export default function App() {
   return (
     <>
       <div
+        id="container"
         className={
           "flex flex-col items-center w-screen h-screen bg-primary text-white"
         }
       >
         <div className="h-full w-full bg-transparent/10">
-          <nav className="flex flex-row w-full h-16 justify-center items-center">
+          <nav className="flex flex-row w-full h-16 justify-center items-center ">
             <button
               className="bg-red-400"
               onClick={() => setaboutClicked(true)}
@@ -40,16 +41,16 @@ export default function App() {
               </button>
             </div>
           </nav>
-          {aboutClicked && (
+          {aboutClicked ? (
             <div
               className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 ${
-                aboutClicked ? "backdrop-blur-md" : ""
+                aboutClicked ? "backdrop-blur-sm" : ""
               }`}
               onClick={handleBackdropClick}
             ></div>
-          )}
+          ) : null}
           {aboutClicked ? (
-            <div className="w-screen h-screen flex justify-center items-centers bg-red-300">
+            <div className="w-screen h-screen flex justify-center items-centers  ">
               <About setaboutClicked={setaboutClicked} className="" />
             </div>
           ) : null}
@@ -57,6 +58,14 @@ export default function App() {
         <NotesForm />
         {loginButtonclicked ? (
           <Login setloginButtonClicked={setloginButtonClicked} />
+        ) : null}
+        {loginButtonclicked ? (
+          <div
+            className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 ${
+              loginButtonclicked ? "backdrop-blur-md" : ""
+            }`}
+            onClick={handleBackdropClick}
+          ></div>
         ) : null}
       </div>
     </>

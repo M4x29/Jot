@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 export function About({ clicked, setaboutClicked }) {
-  const [Display, setDisplay] = useState(true);
-
   return (
-    <div className="absolute w-1/2 h-fit bg-red-400 top-2 flex flex-col  justify-center ">
+    <div className=" w-1/2 h-fit  top-2 flex flex-col items-center justify-center z-30">
       <div className="flex flex-col h-2/3 bg-slate-800 w-full ">
         <button
           onClick={() => setaboutClicked(false)}

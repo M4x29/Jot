@@ -10,7 +10,7 @@ export default function Login({ setloginButtonClicked }) {
   const inputStyles =
     "outline-none text-black rounded-lg bg-transparent border border-black h-8 w-56 pl-3";
   return (
-    <div className="absolute w-1/2 h-full flex flex-col  justify-center ">
+    <div className="fixed z-30 w-1/2 h-full flex flex-col  justify-center ">
       <div className="flex flex-col h-2/3 bg-slate-800 rounded-md ">
         <button
           onClick={() => setloginButtonClicked(false)}
@@ -22,7 +22,7 @@ export default function Login({ setloginButtonClicked }) {
 
         <form
           action="submit"
-          className="flex flex-col w-full h-full justify-start gap-3 items-center border border-dotted border-black"
+          className="flex flex-col w-full h-full justify-start gap-3 items-center"
         >
           <div className="h-12"></div>
           <section className="flex flex-col justify-start  w-fit gap-5">
