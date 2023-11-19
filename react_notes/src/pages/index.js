@@ -11,6 +11,7 @@ export default function App() {
 
   const handleBackdropClick = () => {
     setaboutClicked(false);
+    setloginButtonClicked(false);
   };
 
   return (
@@ -18,13 +19,13 @@ export default function App() {
       <div
         id="container"
         className={
-          "flex flex-col items-center w-screen h-screen bg-primary text-white"
+          "flex flex-col items-center w-screen h-screen bg-1 text-white "
         }
       >
-        <div className="h-full w-full bg-transparent/10">
+        <div className="h-full w-full bg-transparent">
           <nav className="flex flex-row w-full h-16 justify-center items-center ">
             <button
-              className="bg-red-400"
+              className="hover:text-green-400"
               onClick={() => setaboutClicked(true)}
             >
               About
@@ -55,7 +56,8 @@ export default function App() {
             </div>
           ) : null}
         </div>
-        <NotesForm />
+        <NotesForm className="" />
+        <div className="h-full"></div>
         {loginButtonclicked ? (
           <Login setloginButtonClicked={setloginButtonClicked} />
         ) : null}

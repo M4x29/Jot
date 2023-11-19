@@ -5,8 +5,8 @@
 body {
   background-repeat: no-repeat;
   background-size: cover;
-  @apply bg-primary;
   overflow-x: hidden;
+  @apply bg-1;
 }
 
 ::-webkit-scrollbar {
@@ -23,5 +23,5 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary;
+  @apply bg-1;
 }

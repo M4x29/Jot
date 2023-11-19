@@ -9,6 +9,10 @@ export default function Login({ setloginButtonClicked }) {
 
   const inputStyles =
     "outline-none text-black rounded-lg bg-transparent border border-black h-8 w-56 pl-3";
+
+  function handleBackdrop() {
+    setdisplayLoginComponent(false);
+  }
   return (
     <div className="fixed z-30 w-1/2 h-full flex flex-col  justify-center ">
       <div className="flex flex-col h-2/3 bg-slate-800 rounded-md ">
