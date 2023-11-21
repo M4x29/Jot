@@ -4,7 +4,7 @@ import NotesForm from "@/components/notesform";
 import { GiHood } from "react-icons/gi";
 import { useState } from "react";
 
-export default function Login({ setloginButtonClicked }) {
+export default function Register({ setloginButtonClicked }) {
   const [SignUp, setSignUp] = useState(false);
 
   const inputStyles =
@@ -14,8 +14,8 @@ export default function Login({ setloginButtonClicked }) {
     setdisplayLoginComponent(false);
   }
   return (
-    <div className="fixed z-30 w-1/2 h-full flex flex-col  justify-center ">
-      <div className="flex flex-col h-2/3 bg-slate-800 rounded-md ">
+    <div className=" w-screen h-screen fixed flex flex-col  justify-center bg-green-400 ">
+      <div className="flex flex-col h-2/3 w-1/2 bg-slate-800 rounded-md ">
         <button
           onClick={() => setloginButtonClicked(false)}
           className="hover:text-green-300 w-fit h-fit flex justify-start text-sm p-5 items-center hover:border-s-2 border-green-400"
@@ -32,21 +32,14 @@ export default function Login({ setloginButtonClicked }) {
           <section className="flex flex-col justify-start  w-fit gap-5">
             {" "}
             {/* tror egt ikke section taggen er nødvendig, men nå er den her */}
-            <h1 className="justify-center text-6xl bold ">Login</h1>
+            <h1 className="justify-center text-6xl bold ">Register</h1>
             <div className="h-2"></div>
             <input type="text" className={inputStyles} placeholder="Username" />
-            <input
-              type="text"
-              className={
-                inputStyles
-              } /* backtick og dollar tegn er ikke nødvendig ha! */
-              placeholder="password"
-            />
+            <input type="text" className={inputStyles} placeholder="password" />
           </section>
         </form>
         <button onClick={() => setSignUp(true)}>
-          Dont have an account?{" "}
-          <span className="hover:text-green-400">Sign up</span>
+          Have an account <span className="hover:text-green-400">Log in</span>
         </button>
       </div>
     </div>

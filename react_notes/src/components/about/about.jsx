@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import Nav from "@/components/nav/nav";
 
 export function About({ clicked, setaboutClicked }) {
   return (
-    <div className=" w-1/2 h-fit  top-2 flex flex-col items-center justify-center z-30">
+    <div className="fixed left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2  h-fit  top-1/2 flex flex-col items-center justify-center z-30">
       <div className="flex flex-col h-2/3 bg-slate-800 w-full ">
         <button
           onClick={() => setaboutClicked(false)}
@@ -14,7 +15,6 @@ export function About({ clicked, setaboutClicked }) {
 
         <section className="flex flex-col justify-center text-md md:text-xl lg:text-xl  w-full gap-5 p-8">
           {" "}
-          {/* tror egt ikke section taggen er nødvendig, men nå er den her:)*/}
           <h1 className="justify-center text-3xl md:text-4xl lg:text-6xl bold w-full ">
             About us
           </h1>
@@ -47,24 +47,3 @@ export function About({ clicked, setaboutClicked }) {
     </div>
   );
 }
-
-// import React, { useState, useEffect } from "react";
-
-// export function About({ setaboutClicked }) {
-//   const [Display, setDisplay] = useState(true);
-
-//   useEffect(() => {
-//     setaboutClicked(true);
-//     setDisplay(true);
-//     return () => {
-//       setaboutClicked(false);
-//     };
-//   }, [setaboutClicked]);
-
-//   return (
-//     <div>
-//       <p>Display State: {Display.toString()}</p>
-//       <button onClick={() => setDisplay(false)}>Toggle Display</button>
-//     </div>
-//   );
-// }
