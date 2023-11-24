@@ -64,7 +64,7 @@ function NotesForm() {
             <form className="flex flex-col" onSubmit={handleSubmit}>
               {" "}
               <input
-                className="w-full pl-4 h-12 text-whtie text-2xl placeholder:text-white p-1  placeholder:text-xl rounded-3xl flex justify-center items-center bg-transparent border border-white"
+                className="w-full pl-4 h-12 text-whtie text-2xl placeholder:text-white p-1 outline-none  placeholder:text-xl rounded-3xl flex justify-center items-center bg-transparent border border-white"
                 type="text"
                 placeholder=" Write title here ..."
                 name="title"
@@ -135,8 +135,8 @@ function NotesForm() {
             })
           ) : (
             <div>
-              <p className="w-screen">No notes available</p>
               <div className=" bg-blue-600 w-11/12 h-[2px] mt-8"></div>
+              <p className="w-screen mt-6">No notes available</p>
             </div>
           )}
         </div>

@@ -1,21 +1,38 @@
 // fix for about component
 // ikke ha en nav component, skriv rett inn i index.js. Da kan about komponenten blir conditional rendered i index og da dukke opp utenfor navbaren.
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { About } from "@/components/about/about";
 import App from "@/pages/index";
 import NotesForm from "@/components/notesform";
 import Link from "next/link";
 import { IoMdHome } from "react-icons/io";
 import { handleBackdropClick } from "@/pages/index";
+import { auth } from "@/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
-export default function Nav({}) {
+export default function Nav() {
+  const [IsLoggedIn, setIsLoggedIn] = useState(false);
   const [aboutClicked, setaboutClicked] = useState(false);
+
+  useEffect(() => {
+    const fetchLoginData = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLoggedIn(true);
+        console.log("user is logged in");
+      } else {
+        setIsLoggedIn(false);
+        console.log("user is not logged in");
+      }
+    });
+
+    return () => fetchLoginData(); // Cleanup on component unmount
+  }, []);
 
   const handleBackdropClick = () => {
     setaboutClicked(false);
   };
   return (
-    <nav className=" z-10 flex flex-row w-screen gap-10 h-16 justify-center items-center text-white">
+    <nav className=" fixed top-0 z-10 flex flex-row w-screen gap-10 h-16 justify-center items-center text-white">
       <Link href={"/"}>
         <IoMdHome className="w-6 h-6" />
       </Link>
@@ -43,10 +60,16 @@ export default function Nav({}) {
       ) : null}
       <div className="spacer w-4/5"></div>
       <div className="flex flex-col">
-        <Link href={"/login_register/login"} className="hover:text-green-400">
-          {" "}
-          log in, or create account
-        </Link>
+        {IsLoggedIn ? (
+          <>
+            <div>logged in</div>
+          </>
+        ) : (
+          <Link href={"/login_register/login"} className="hover:text-green-400">
+            {" "}
+            log in, or create account
+          </Link>
+        )}
       </div>
     </nav>
   );

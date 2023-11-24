@@ -5,35 +5,20 @@ import { GiHood } from "react-icons/gi";
 import { useState } from "react";
 import Link from "next/link";
 import Nav from "@/components/nav/nav";
-import { useForm } from "react-hook-form";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../../../firebase";
+import { GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup } from "firebase/auth";
+import { auth } from "@/firebase";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Login({ setloginButtonClicked }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const provider = new GoogleAuthProvider();
   const inputStyles =
-    "outline-none text-black rounded-lg bg-transparent border border-black h-8 w-56 pl-3";
+    "outline-none text-white rounded-lg bg-transparent border border-white h-8 w-56 pl-3";
 
-  const auth = getAuth();
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-
-      const user = result.user;
-      getAdditionalUserInfo(result);
-    })
-    .catch((error) => {
-      console.log("there was an error signing you in with google");
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
+  const googleSignIn = () => {
+    signInWithPopup(auth, provider);
+  };
 
   function loginUser() {
     try {
@@ -42,10 +27,12 @@ export default function Login({ setloginButtonClicked }) {
       console.log("there was a error");
     }
   }
+  try {
+  } catch (error) {}
 
   return (
     <div className="items-center w-screen h-full flex flex-col  justify-center ">
-      <div className="flex flex-col  bg-slate-800 rounded-md w-screen h-screen ">
+      <div className="flex flex-col  bg-transparent rounded-md w-screen h-screen ">
         <Link
           href={"/"}
           className="hover:text-green-300 w-fit h-fit flex justify-start text-sm p-5 items-center hover:border-s-2 border-green-400"
@@ -60,8 +47,7 @@ export default function Login({ setloginButtonClicked }) {
           <div className="h-12"></div>
           <section className="flex flex-col justify-start  w-fit gap-5">
             {" "}
-            {/* tror egt ikke section taggen er nødvendig, men nå er den her */}
-            <h1 className="justify-center text-6xl bold ">Login</h1>
+            <h1 className="justify-center text-6xl bold text-white">Login</h1>
             <div className="h-2"></div>
             <input type="text" className={inputStyles} placeholder="Username" />
             <input
@@ -71,9 +57,24 @@ export default function Login({ setloginButtonClicked }) {
               } /* backtick og dollar tegn er ikke nødvendig ha! */
               placeholder="password"
             />
-            <button onClick={loginUser()}>Login</button>
+            <button
+              type="button"
+              className="border border-white text-white"
+              onClick={() => loginUser()}
+            >
+              Login
+            </button>
+            <button
+              onClick={() => googleSignIn()}
+              className="text-white flex flex-row gap-2 items-center"
+              type="button"
+            >
+              <span>or sign in with </span>{" "}
+              <FcGoogle alt="google image" className="w-8 h-8" />
+            </button>
           </section>
         </form>
+
         <Link href={"/login_register/register/register"}>
           Dont have an account?{" "}
           <span className="hover:text-green-400">Sign up</span>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import Nav from "@/components/nav/nav";
 
-export function About({ clicked, setaboutClicked }) {
+export function About({ setaboutClicked }) {
   return (
     <div className="fixed left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2  h-fit  top-1/2 flex flex-col items-center justify-center z-30">
       <div className="flex flex-col h-2/3 bg-slate-800 w-full ">

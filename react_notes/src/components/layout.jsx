@@ -5,7 +5,7 @@ function Layout({ children }) {
     <>
       {" "}
       <Nav />
-      {children}
+      <div className="mt-16"> {children}</div>
     </>
   );
 }
