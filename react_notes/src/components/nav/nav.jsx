@@ -32,12 +32,13 @@ export default function Nav() {
     setaboutClicked(false);
   };
   return (
-    <nav className=" fixed top-0 z-10 flex flex-row w-screen gap-10 h-16 justify-center items-center text-white">
+    <nav className=" fixed top-0 z-10 flex flex-row w-screen px-10 gap-10 h-16 justify-center items-center text-white  border-white border-b">
       <Link href={"/"}>
-        <IoMdHome className="w-6 h-6" />
+        <IoMdHome className="w-9 h-9 hover:text-green-400 " />
       </Link>
+      <div className="w-1/12"></div>
       <button
-        className="hover:text-green-400"
+        className="hover:text-green-400 text-xl"
         onClick={() => setaboutClicked(true)}
       >
         About
@@ -59,13 +60,16 @@ export default function Nav() {
         </div>
       ) : null}
       <div className="spacer w-4/5"></div>
-      <div className="flex flex-col">
+      <div className=" w-full flex justify-center sm:w-full sm:justify-end ">
         {IsLoggedIn ? (
           <>
             <div>logged in</div>
           </>
         ) : (
-          <Link href={"/login_register/login"} className="hover:text-green-400">
+          <Link
+            href={"/login_register/login"}
+            className="hover:text-green-400 sm:text-xl"
+          >
             {" "}
             log in, or create account
           </Link>

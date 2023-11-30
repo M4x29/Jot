@@ -52,7 +52,7 @@ function NotesForm() {
               scale: 1.1,
               transition: { duration: 0.2 },
             }}
-            className="bg-2 rounded-md outline shadow-white p-4 border-slate-100"
+            className="bg-2 rounded-md border-notes shadow-white p-4 "
           >
             <h1
               className={

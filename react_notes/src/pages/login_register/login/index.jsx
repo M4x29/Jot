@@ -9,18 +9,22 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { getAuth, signInWithPopup } from "firebase/auth";
 import { auth } from "@/firebase";
 import { FcGoogle } from "react-icons/fc";
+import { BiShow } from "react-icons/bi";
+import { BiHide } from "react-icons/bi";
 
 export default function Login({ setloginButtonClicked }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [show, setShow] = useState(false);
   const provider = new GoogleAuthProvider();
   const inputStyles =
-    "outline-none text-white rounded-lg bg-transparent border border-white h-8 w-56 pl-3";
+    "outline-none text-white text-lg rounded-lg bg-transparent border border-white h-11 w-full pl-5 placeholder-white focus:border-green-400";
 
   const googleSignIn = () => {
     signInWithPopup(auth, provider);
   };
 
-  function loginUser() {
+  function loginUser(e) {
+    e.preventDefault();
     try {
       console.log("logged in");
     } catch (error) {
@@ -31,46 +35,64 @@ export default function Login({ setloginButtonClicked }) {
   } catch (error) {}
 
   return (
-    <div className="items-center w-screen h-full flex flex-col  justify-center ">
-      <div className="flex flex-col  bg-transparent rounded-md w-screen h-screen ">
-        <Link
-          href={"/"}
-          className="hover:text-green-300 w-fit h-fit flex justify-start text-sm p-5 items-center hover:border-s-2 border-green-400"
+    <div className="items-center w-screen h-screen flex flex-col justify-center ">
+      <div className="flex flex-col bg-transparent rounded-md w-full h-full justify-center items-center ">
+        {/* <div className="flex ">
+          <Link
+            href={"/"}
+            className="hover:text-green-300 w-fit text-white h-fit flex justify-start p-5 gap-3 text-sm items-center hover:border-s-2 border-green-400"
+          >
+            <span>be anonymous</span>
+            <GiHood className=" cursor-pointer w-8 h-8" />
+          </Link>
+        </div> */}
+
+        <form
+          className="flex flex-col w-full h-full gap-3 items-center "
+          onSubmit={(e) => loginUser(e)}
         >
-          {" "}
-          be anonymous
-        </Link>
-
-        <GiHood className="hover:text-green w-8 h-8" />
-
-        <form className="flex flex-col w-full h-full justify-start gap-3 items-center">
           <div className="h-12"></div>
-          <section className="flex flex-col justify-start  w-fit gap-5">
+
+          <section className="flex flex-col justify-center h-3/5 w-1/3 gap-5  items-center ">
             {" "}
             <h1 className="justify-center text-6xl bold text-white">Login</h1>
             <div className="h-2"></div>
             <input type="text" className={inputStyles} placeholder="Username" />
-            <input
-              type="text"
-              className={
-                inputStyles
-              } /* backtick og dollar tegn er ikke nødvendig ha! */
-              placeholder="password"
-            />
+            <div className="flex w-full  items-center">
+              {" "}
+              <input
+                type={show ? "text" : "password"}
+                className={`${inputStyles} text-2xl placeholder:text-lg`}
+                placeholder="password"
+              />{" "}
+              {show ? (
+                <BiHide
+                  className="text-white text-2xl -ml-8"
+                  onClick={() => setShow(false)}
+                />
+              ) : (
+                <BiShow
+                  onClick={() => setShow(true)}
+                  className="text-white text-2xl -ml-8"
+                />
+              )}
+            </div>
             <button
-              type="button"
-              className="border border-white text-white"
-              onClick={() => loginUser()}
+              type="submit"
+              className="border w-full border-white text-white text-xl h-12  rounded-lg hover:bg-green-400 hover:text-black hover:border-green-400  "
             >
               Login
             </button>
             <button
               onClick={() => googleSignIn()}
-              className="text-white flex flex-row gap-2 items-center"
+              className="animation-parent w-fit text-xl self-start text-white flex flex-row gap-2 items-center hover:text-green-400  "
               type="button"
             >
-              <span>or sign in with </span>{" "}
-              <FcGoogle alt="google image" className="w-8 h-8" />
+              or sign in with{" "}
+              <FcGoogle
+                alt="google image"
+                className="w-8 h-8 animation-child "
+              />
             </button>
           </section>
         </form>

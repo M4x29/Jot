@@ -9,6 +9,10 @@ body {
   @apply bg-1;
 }
 
+.animation-parent:hover .animation-child {
+  @apply animate-rotate-x  animate-once;
+}
+
 ::-webkit-scrollbar {
 }
 /* Track */
