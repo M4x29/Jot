@@ -5,6 +5,8 @@ import Link from "next/link";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
 import Image from "next/image";
+import { useEffect } from "react";
+import { getAuth } from "firebase/auth";
 
 import ReactLoading from "react-loading";
 
@@ -13,6 +15,18 @@ export default function App() {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      setIsLoggedIn(true);
+      setUserName(user.displayName);
+      // ...
+    } else {
+      setIsLoggedIn(false);
+      console.log("not logged in via password/email");
+    }
+  });
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -24,6 +38,7 @@ export default function App() {
     }
     setLoaded(true);
   });
+
   return (
     <>
       <div

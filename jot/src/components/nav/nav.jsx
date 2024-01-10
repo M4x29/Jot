@@ -9,11 +9,24 @@ import { IoMdHome } from "react-icons/io";
 import { handleBackdropClick } from "@/pages/index";
 import { auth } from "@/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
+import { redirect } from "next/navigation";
 
 export default function Nav() {
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
   const [aboutClicked, setaboutClicked] = useState(false);
+  const auth = getAuth();
 
+  function signOutUser() {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        redirect("/");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  }
   useEffect(() => {
     const fetchLoginData = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -63,7 +76,10 @@ export default function Nav() {
       <div className=" w-full flex justify-center sm:w-full sm:justify-end ">
         {IsLoggedIn ? (
           <>
-            <div>logged in</div>
+            <div className="flex gap-5">
+              <div>logged in</div>
+              <button onClick={() => signOutUser()}>log out</button>
+            </div>
           </>
         ) : (
           <Link

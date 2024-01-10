@@ -43,8 +43,8 @@ function NotesForm() {
   return (
     <>
       {" "}
-      <main className="w-screen h-full flex justify-center ">
-        <div className="w-1/4 h-fit m-0 flex flex-col ">
+      <main className="w-screen h-full flex justify-center mt-24">
+        <div className="w-1/4 h-fit m-0 flex flex-col">
           <div className="h-3"></div>
 
           <motion.div

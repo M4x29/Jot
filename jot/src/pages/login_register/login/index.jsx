@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
 import App from "@/pages/index";
 import NotesForm from "@/components/notesform";
-import { GiHood } from "react-icons/gi";
 import { useState } from "react";
 import Link from "next/link";
-import Nav from "@/components/nav/nav";
 import { GoogleAuthProvider } from "firebase/auth";
 import { getAuth, signInWithPopup } from "firebase/auth";
 import { auth } from "@/firebase";
 import { FcGoogle } from "react-icons/fc";
 import { BiShow } from "react-icons/bi";
 import { BiHide } from "react-icons/bi";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function Login({ setloginButtonClicked }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const provider = new GoogleAuthProvider();
   const inputStyles =
     "outline-none text-white text-lg rounded-lg bg-transparent border border-white h-11 w-full pl-5 placeholder-white focus:border-green-400";
@@ -34,9 +35,23 @@ export default function Login({ setloginButtonClicked }) {
   try {
   } catch (error) {}
 
+  const auth = getAuth();
+  function loginUser() {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  }
+
   return (
-    <div className="items-center w-screen h-screen flex flex-col justify-center ">
-      <div className="flex flex-col bg-transparent rounded-md w-full h-full justify-center items-center ">
+    <div className=" w-screen h-screen flex flex-col justify-center items-center ">
+      <div className="flex flex-col bg-transparent rounded-md w-full h-screen justify-center items-center ">
         {/* <div className="flex ">
           <Link
             href={"/"}
@@ -49,7 +64,7 @@ export default function Login({ setloginButtonClicked }) {
 
         <form
           className="flex flex-col w-full h-full gap-3 items-center "
-          onSubmit={(e) => loginUser(e)}
+          onSubmit={loginUser}
         >
           <div className="h-12"></div>
 
@@ -57,13 +72,19 @@ export default function Login({ setloginButtonClicked }) {
             {" "}
             <h1 className="justify-center text-6xl bold text-white">Login</h1>
             <div className="h-2"></div>
-            <input type="text" className={inputStyles} placeholder="Username" />
+            <input
+              type="text"
+              className={inputStyles}
+              placeholder="e-mail"
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <div className="flex w-full  items-center">
               {" "}
               <input
                 type={show ? "text" : "password"}
                 className={`${inputStyles} text-2xl placeholder:text-lg`}
                 placeholder="password"
+                onChange={(e) => setPassword(e.target.value)}
               />{" "}
               {show ? (
                 <BiHide
@@ -79,13 +100,13 @@ export default function Login({ setloginButtonClicked }) {
             </div>
             <button
               type="submit"
-              className="border w-full border-white text-white text-xl h-12  rounded-lg hover:bg-green-400 hover:text-black hover:border-green-400  "
+              className="border w-full border-white text-white text-xl h-12  rounded-lg hover:bg-green-400 hover:text-black hover:border-green-400 hover:duration-300 "
             >
               Login
             </button>
             <button
               onClick={() => googleSignIn()}
-              className="animation-parent w-fit text-xl self-start text-white flex flex-row gap-2 items-center hover:text-green-400  "
+              className="animation-parent w-fit text-xl self-start text-white flex flex-row gap-2 items-center hover:text-green-400  hover:text-2xl hover:duration-300 "
               type="button"
             >
               or sign in with{" "}
@@ -94,13 +115,21 @@ export default function Login({ setloginButtonClicked }) {
                 className="w-8 h-8 animation-child "
               />
             </button>
+            <span className="h-2"></span>
+            <div className="w-full flex justify-start">
+              {" "}
+              <Link
+                href={"/login_register/register/"}
+                className="text-white text-xl "
+              >
+                Dont have an account?{" "}
+                <span className="hover:text-green-400  text-white text-xl hover:text-2xl hover:duration-300 ">
+                  Sign up
+                </span>
+              </Link>
+            </div>
           </section>
         </form>
-
-        <Link href={"/login_register/register/register"}>
-          Dont have an account?{" "}
-          <span className="hover:text-green-400">Sign up</span>
-        </Link>
       </div>
     </div>
   );
