@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import App from "@/pages/index";
-import NotesForm from "@/components/notesform";
 import { useState } from "react";
 import Link from "next/link";
 import { GoogleAuthProvider } from "firebase/auth";
@@ -24,19 +22,20 @@ export default function Login({ setloginButtonClicked }) {
     signInWithPopup(auth, provider);
   };
 
-  function loginUser(e) {
-    e.preventDefault();
-    try {
-      console.log("logged in");
-    } catch (error) {
-      console.log("there was a error");
-    }
-  }
-  try {
-  } catch (error) {}
+  // function loginUser(e) {
+  //   e.preventDefault();
+  //   try {
+  //     console.log("logged in");
+  //   } catch (error) {
+  //     console.log("there was a error");
+  //   }
+  // }
+  // try {
+  // } catch (error) {}
 
   const auth = getAuth();
-  function loginUser() {
+  function onSubmit(e) {
+    e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
@@ -47,7 +46,18 @@ export default function Login({ setloginButtonClicked }) {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
+    console.log("user registered");
   }
+  // signInWithEmailAndPassword(auth, email, password)
+  //   .then((userCredential) => {
+  //     // Signed in
+  //     const user = userCredential.user;
+  //     // ...
+  //   })
+  //   .catch((error) => {
+  //     const errorCode = error.code;
+  //     const errorMessage = error.message;
+  //   });
 
   return (
     <div className=" w-screen h-screen flex flex-col justify-center items-center ">
@@ -64,7 +74,7 @@ export default function Login({ setloginButtonClicked }) {
 
         <form
           className="flex flex-col w-full h-full gap-3 items-center "
-          onSubmit={loginUser}
+          onSubmit={onSubmit}
         >
           <div className="h-12"></div>
 
@@ -76,7 +86,7 @@ export default function Login({ setloginButtonClicked }) {
               type="text"
               className={inputStyles}
               placeholder="e-mail"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <div className="flex w-full  items-center">
               {" "}
@@ -120,7 +130,7 @@ export default function Login({ setloginButtonClicked }) {
               {" "}
               <Link
                 href={"/login_register/register/"}
-                className="text-white text-xl "
+                className="text-white text-xl h-12"
               >
                 Dont have an account?{" "}
                 <span className="hover:text-green-400  text-white text-xl hover:text-2xl hover:duration-300 ">

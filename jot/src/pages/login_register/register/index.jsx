@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import App from "@/pages/index";
 import { useState } from "react";
 import Link from "next/link";
 import { BiShow } from "react-icons/bi";

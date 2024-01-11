@@ -16,23 +16,12 @@ export default function App() {
   const [profilePic, setProfilePic] = useState("");
   const [loaded, setLoaded] = useState(false);
   const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      setIsLoggedIn(true);
-      setUserName(user.displayName);
-      // ...
-    } else {
-      setIsLoggedIn(false);
-      console.log("not logged in via password/email");
-    }
-  });
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setIsLoggedIn(true);
-      setUserName(user.displayName);
-      setProfilePic(user.photoURL);
+      // setUserName(user.displayName);
+      // setProfilePic(user.photoURL);
     } else {
       setIsLoggedIn(false);
     }
